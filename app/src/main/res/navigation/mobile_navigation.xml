@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/homeFragment">
+
+    <include app:graph="@navigation/feature_navigation" />
+
+    <!-- region Global -->
+    <action
+        android:id="@+id/action_global_to_feature1Fragment"
+        app:destination="@id/feature_navigation" />
+    <!-- endregion -->
+
+    <!-- region Home -->
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.androidx.ui.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home">
+
+        <action
+            android:id="@+id/action_home_to_home1"
+            app:destination="@id/home1Fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/home1Fragment"
+        android:name="com.example.androidx.ui.home.pages.Home1Fragment"
+        android:label="Home1Fragment">
+        <action
+            android:id="@+id/action_home1_to_home2"
+            app:destination="@id/home2Fragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@animator/nav_default_pop_exit_anim" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/home2Fragment"
+        android:name="com.example.androidx.ui.home.pages.Home2Fragment"
+        android:label="Home2Fragment">
+        <action
+            android:id="@+id/action_home2_to_home3"
+            app:destination="@id/home3Fragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@animator/nav_default_pop_exit_anim" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/home3Fragment"
+        android:name="com.example.androidx.ui.home.pages.Home3Fragment"
+        android:label="Home3Fragment">
+        <action
+            android:id="@+id/action_home3_to_feature_navigation"
+            app:destination="@id/feature_navigation"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@animator/nav_default_pop_exit_anim"
+            app:popUpTo="@id/homeFragment" />
+    </fragment>
+    <!-- endregion -->
+
+    <!-- region Safe -->
+    <fragment
+        android:id="@+id/safeFragment"
+        android:name="com.example.androidx.ui.safe.SafeFragment"
+        android:label="@string/title_safe"
+        tools:layout="@layout/fragment_safe">
+
+        <action
+            android:id="@+id/action_safe_to_safe1"
+            app:destination="@id/safe1Fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/safe1Fragment"
+        android:name="com.example.androidx.ui.safe.pages.Safe1Fragment"
+        android:label="Safe1">
+
+        <action
+            android:id="@+id/to_safe2_without_args"
+            app:destination="@id/safe2Fragment"/>
+
+        <action
+            android:id="@+id/to_safe2_with_args"
+            app:destination="@id/safe2Fragment">
+            <argument
+                android:name="arg1"
+                app:argType="string" />
+            <argument
+                android:name="arg2"
+                app:argType="integer"
+                android:defaultValue="0"/>
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/safe2Fragment"
+        android:name="com.example.androidx.ui.safe.pages.Safe2Fragment"
+        android:label="Safe2">
+
+        <action
+            android:id="@+id/to_safe3"
+            app:destination="@id/safe3Fragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/safe3Fragment"
+        android:name="com.example.androidx.ui.safe.pages.Safe3Fragment"
+        android:label="Safe3" >
+
+        <argument
+            android:name="arg1"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="arg2"
+            android:defaultValue="0"
+            app:argType="integer" />
+        <argument
+            android:name="arg3"
+            android:defaultValue="-2.4"
+            app:argType="float" />
+
+    </fragment>
+    <!-- endregion -->
+
+    <!-- region Share -->
+    <fragment
+        android:id="@+id/shareFragment"
+        android:name="com.example.androidx.ui.share.ShareFragment"
+        android:label="@string/title_share"
+        tools:layout="@layout/fragment_share">
+
+        <action
+            android:id="@+id/to_share1"
+            app:destination="@id/share1Fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/share1Fragment"
+        android:name="com.example.androidx.ui.share.pages.Share1Fragment"
+        android:label="Share1">
+        <action
+            android:id="@+id/to_share2"
+            app:destination="@id/share2Fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/share2Fragment"
+        android:name="com.example.androidx.ui.share.pages.Share2Fragment"
+        android:label="Share2">
+        <action
+            android:id="@+id/to_share3"
+            app:destination="@id/share3Fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/share3Fragment"
+        android:name="com.example.androidx.ui.share.pages.Share3Fragment"
+        android:label="Share3">
+
+    </fragment>
+    <!-- endregion -->
+
+    <!-- region DSL -->
+    <fragment
+        android:id="@+id/dslFragment"
+        android:name="com.example.androidx.ui.dsl.DslFragment"
+        android:label="DSL">
+
+        <action
+            android:id="@+id/to_dslActivity"
+            app:destination="@id/dslActivity" />
+    </fragment>
+    <!-- endregion -->
+
+    <activity
+        android:id="@+id/dslActivity"
+        android:name="com.example.androidx.MainDslActivity" />
+</navigation>
