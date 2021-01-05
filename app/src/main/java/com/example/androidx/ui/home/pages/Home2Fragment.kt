@@ -30,9 +30,9 @@ class Home2Fragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_home, container, false)
 
         requireActivity().onBackPressedDispatcher.addCallback(this) {
-
+//            findNavController().popBackStack()
+//            findNavController().popBackStack(R.id.homeFragment, false)
         }
-
 
         val textView: TextView = root.findViewById(R.id.text_home)
         textView.text = "Page 2"

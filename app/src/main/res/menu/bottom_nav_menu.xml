@@ -17,13 +17,7 @@
         android:title="@string/title_share" />
 
     <item
-        android:id="@+id/dslFragment"
+        android:id="@+id/moreFragment"
         android:icon="@drawable/ic_dashboard_black_24dp"
-        android:title="@string/title_dsl" />
-
-<!--    <item-->
-<!--        android:id="@+id/notificationsFragment"-->
-<!--        android:icon="@drawable/ic_notifications_black_24dp"-->
-<!--        android:title="@string/title_notifications" />-->
-
+        android:title="@string/title_more" />
 </menu>

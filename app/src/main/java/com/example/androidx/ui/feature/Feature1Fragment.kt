@@ -17,7 +17,7 @@ class Feature1Fragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_share, container, false)
-        val textView: TextView = root.findViewById(R.id.text_dashboard)
+        val textView: TextView = root.findViewById(R.id.text_share)
         textView.text = "Page 1"
 
         val button = root.findViewById<Button>(R.id.button_next)

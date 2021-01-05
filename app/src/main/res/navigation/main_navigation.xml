@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mobile_navigation"
+    android:id="@+id/main_navigation"
     app:startDestination="@+id/homeFragment">
 
     <include app:graph="@navigation/feature_navigation" />
@@ -167,14 +167,22 @@
         android:name="com.example.androidx.ui.share.pages.Share3Fragment"
         android:label="Share3">
 
+        <action
+            android:id="@+id/to_share4"
+            app:destination="@id/share4Fragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/share4Fragment"
+        android:name="com.example.androidx.ui.share.pages.Share4Fragment"
+        android:label="Share4Fragment" />
     <!-- endregion -->
 
-    <!-- region DSL -->
+    <!-- region More -->
     <fragment
-        android:id="@+id/dslFragment"
-        android:name="com.example.androidx.ui.dsl.DslFragment"
-        android:label="DSL">
+        android:id="@+id/moreFragment"
+        android:name="com.example.androidx.ui.more.MoreFragment"
+        android:label="@string/title_more">
 
         <action
             android:id="@+id/to_dslActivity"
@@ -185,4 +193,5 @@
     <activity
         android:id="@+id/dslActivity"
         android:name="com.example.androidx.MainDslActivity" />
+
 </navigation>

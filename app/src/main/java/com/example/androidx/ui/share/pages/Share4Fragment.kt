@@ -1,7 +1,6 @@
 package com.example.androidx.ui.share.pages
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,16 +10,16 @@ import androidx.activity.addCallback
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
-import androidx.fragment.app.setFragmentResultListener
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import com.example.androidx.*
 import com.example.androidx.ARGUMENT_KEY_1
 import com.example.androidx.ui.share.ShareViewModel
 
-class Share3Fragment : Fragment() {
+class Share4Fragment : Fragment() {
 
     private val viewModel: ShareViewModel by navGraphViewModels(R.id.main_navigation)
+    //private val activityViewModel: OtherViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,21 +34,24 @@ class Share3Fragment : Fragment() {
             findNavController().popBackStack()
         }
 
-        // Listen for Fragment request result
-        setFragmentResultListener(REQUEST_KEY_2) { requestKey, bundle ->
-            val result = bundle.getInt(ARGUMENT_KEY_2)
-            Log.d(TAG, "Request result: $result")
-        }
+        // Set Fragment request result
+        setFragmentResult(
+            REQUEST_KEY_1,
+            bundleOf(ARGUMENT_KEY_1 to findNavController().currentDestination?.label)
+        )
+
+        // Set Fragment request result
+        setFragmentResult(
+            REQUEST_KEY_2,
+            bundleOf(ARGUMENT_KEY_2 to findNavController().currentDestination?.id)
+        )
 
         // ViewModel
         viewModel.text.observe(viewLifecycleOwner) {
             root.findViewById<TextView>(R.id.text_share).text = it
         }
 
-        root.findViewById<Button>(R.id.button_next).setOnClickListener {
-            viewModel.incrementCount()
-            findNavController().navigate(Share3FragmentDirections.toShare4())
-        }
+        root.findViewById<Button>(R.id.button_next).visibility = View.GONE
 
         return root
     }

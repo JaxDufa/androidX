@@ -14,29 +14,23 @@ import androidx.navigation.ui.setupWithNavController
 // - Navigation https://developer.android.com/guide/navigation/navigation-principles
 // - Graph and actions with pop  https://developer.android.com/guide/navigation/navigation-design-graph
 // - Animations https://developer.android.com/guide/navigation/navigation-animate-transitions
-// - Global Actions https://developer.android.com/guide/navigation/navigation-global-action
 // - Custom back navigation https://developer.android.com/guide/navigation/navigation-custom-back
 // - Deep Link https://developer.android.com/guide/navigation/navigation-deep-link
 // - Nested graph https://developer.android.com/guide/navigation/navigation-nested-graphs
+
+// - Safe Args https://developer.android.com/guide/navigation/navigation-pass-data
+// - Global Actions https://developer.android.com/guide/navigation/navigation-global-action
+
 // - Share data with ViewModel https://developer.android.com/guide/fragments/communicate#viewmodel
 // - Fragments result https://developer.android.com/guide/fragments/communicate#fragment-result
-// - Safe Args https://developer.android.com/guide/navigation/navigation-pass-data
-// - Multiple Stacks https://github.com/android/architecture-components-samples/blob/master/NavigationAdvancedSample/app/src/main/java/com/example/android/navigationadvancedsample/NavigationExtensions.kt
-// - Nav graph DSL https://developer.android.com/guide/navigation/navigation-kotlin-dsl
+
+// - Nav DSL https://developer.android.com/guide/navigation/navigation-kotlin-dsl
 // - Nav compose https://developer.android.com/jetpack/compose/navigation
-
-// navigation
-// safe args
-// share data
-// DSL
-// other
-
-// Add Links to all topics ^
+// - Multiple Stacks https://github.com/android/architecture-components-samples/blob/master/NavigationAdvancedSample/app/src/main/java/com/example/android/navigationadvancedsample/NavigationExtensions.kt
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
-    private lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,12 +43,12 @@ class MainActivity : AppCompatActivity() {
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        appBarConfiguration = AppBarConfiguration(
+        val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.homeFragment,
                 R.id.safeFragment,
                 R.id.shareFragment,
-                R.id.dslFragment
+                R.id.moreFragment
             )
         )
 
@@ -62,7 +56,7 @@ class MainActivity : AppCompatActivity() {
             val id = destination.id
             val label = destination.label
             val args = arguments?.toString()
-            Log.d("Navigation", "Destination changed \n Id: $id \n Label: $label \n Arguments: $args")
+            Log.d(TAG, "Destination changed \n Id: $id \n Label: $label \n Arguments: $args")
         }
 
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -70,7 +64,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        // return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+        // return navController.navigateUp() || super.onSupportNavigateUp()
         onBackPressedDispatcher.onBackPressed()
         return true
     }

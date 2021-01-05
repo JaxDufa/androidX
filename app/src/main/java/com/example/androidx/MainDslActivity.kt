@@ -27,9 +27,8 @@ class MainDslActivity : AppCompatActivity() {
         navController = navHostFragment.navController
 
         Log.d("Navigation", "Creating graph")
-        val navGraph = feature_graph
         navController.apply {
-            graph = createGraph(navGraph.id, feature_graph.dest.feature) {
+            graph = createGraph(feature_graph.id, feature_graph.dest.feature) {
 
                 fragment<FeatureFragment>(feature_graph.dest.feature) {
                     label = "Feature"

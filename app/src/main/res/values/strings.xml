@@ -3,6 +3,7 @@
     <string name="title_home">Home</string>
     <string name="title_safe">Safe</string>
     <string name="title_share">Share</string>
-    <string name="title_dsl">DSL</string>
+    <string name="title_more">More</string>
     <string name="action_next">Next</string>
+    <string name="action_deep_link">Deep Link</string>
 </resources>

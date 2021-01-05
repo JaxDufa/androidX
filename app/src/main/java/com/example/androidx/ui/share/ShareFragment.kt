@@ -1,37 +1,48 @@
 package com.example.androidx.ui.share
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.navGraphViewModels
+import com.example.androidx.ARGUMENT_KEY_1
 import com.example.androidx.R
+import com.example.androidx.TAG
 
 class ShareFragment : Fragment() {
 
-    private lateinit var shareViewModel: ShareViewModel
+    private val viewModel: ShareViewModel by navGraphViewModels(R.id.main_navigation)
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
-        shareViewModel =
-                ViewModelProvider(this).get(ShareViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_share, container, false)
 
-        val textView: TextView = root.findViewById(R.id.text_dashboard)
-        shareViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
+        // Receive result from fragment
+        val backStackStateHandler = findNavController().currentBackStackEntry?.savedStateHandle
+        backStackStateHandler?.getLiveData<String>(
+            ARGUMENT_KEY_1
+        )?.observe(viewLifecycleOwner) { result ->
+            Log.d(TAG, "Result: $result")
+        }
 
-        val button = root.findViewById<Button>(R.id.button_next)
-        button.setOnClickListener {
+        // ViewModel
+        viewModel.run {
+            resetCount()
+            text.observe(viewLifecycleOwner) {
+                root.findViewById<TextView>(R.id.text_share).text = it
+            }
+        }
+
+        root.findViewById<Button>(R.id.button_next).setOnClickListener {
+            viewModel.incrementCount()
             findNavController().navigate(ShareFragmentDirections.toShare1())
         }
 

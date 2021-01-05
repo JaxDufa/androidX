@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -14,15 +15,13 @@ import com.example.androidx.R
 
 class SafeFragment : Fragment() {
 
-    private lateinit var safeViewModel: SafeViewModel
+    private val safeViewModel: SafeViewModel by viewModels()
 
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        safeViewModel =
-                ViewModelProvider(this).get(SafeViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_safe, container, false)
 
         val textView: TextView = root.findViewById(R.id.text_notifications)
