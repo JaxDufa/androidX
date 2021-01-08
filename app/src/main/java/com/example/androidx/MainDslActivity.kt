@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.NavType
 import androidx.navigation.createGraph
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.fragment
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -26,7 +25,7 @@ class MainDslActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
 
-        Log.d("Navigation", "Creating graph")
+        Log.d(TAG, "Creating graph")
         navController.apply {
             graph = createGraph(feature_graph.id, feature_graph.dest.feature) {
 
@@ -50,7 +49,7 @@ class MainDslActivity : AppCompatActivity() {
             val id = destination.id
             val label = destination.label
             val args = arguments?.toString()
-            Log.d("Navigation", "Destination changed \n Id: $id \n Label: $label \n Arguments: $args")
+            Log.d(TAG, "Destination changed \n Id: $id \n Label: $label \n Arguments: $args")
         }
 
         setupActionBarWithNavController(navController)

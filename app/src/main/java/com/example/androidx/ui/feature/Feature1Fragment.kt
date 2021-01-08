@@ -4,25 +4,23 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import com.example.androidx.R
+import com.example.androidx.databinding.FragmentHomeBinding
 
 class Feature1Fragment : Fragment() {
+
+    private lateinit var binding: FragmentHomeBinding
 
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
-    ): View? {
-        val root = inflater.inflate(R.layout.fragment_share, container, false)
-        val textView: TextView = root.findViewById(R.id.text_share)
-        textView.text = "Page 1"
+    ): View {
+        binding = FragmentHomeBinding.inflate(layoutInflater)
 
-        val button = root.findViewById<Button>(R.id.button_next)
-        button.visibility = View.GONE
+        binding.textDescription.text = "Page 1"
+        binding.buttonNext.visibility = View.GONE
 
-        return root
+        return binding.root
     }
 }

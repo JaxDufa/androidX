@@ -85,7 +85,7 @@
 
         <action
             android:id="@+id/to_safe2_without_args"
-            app:destination="@id/safe2Fragment"/>
+            app:destination="@id/safe2Fragment" />
 
         <action
             android:id="@+id/to_safe2_with_args"
@@ -95,8 +95,8 @@
                 app:argType="string" />
             <argument
                 android:name="arg2"
-                app:argType="integer"
-                android:defaultValue="0"/>
+                android:defaultValue="0"
+                app:argType="integer" />
         </action>
     </fragment>
 
@@ -107,13 +107,13 @@
 
         <action
             android:id="@+id/to_safe3"
-            app:destination="@id/safe3Fragment"/>
+            app:destination="@id/safe3Fragment" />
     </fragment>
 
     <fragment
         android:id="@+id/safe3Fragment"
         android:name="com.example.androidx.ui.safe.pages.Safe3Fragment"
-        android:label="Safe3" >
+        android:label="Safe3">
 
         <argument
             android:name="arg1"
@@ -182,7 +182,8 @@
     <fragment
         android:id="@+id/moreFragment"
         android:name="com.example.androidx.ui.more.MoreFragment"
-        android:label="@string/title_more">
+        android:label="@string/title_more"
+        tools:layout="@layout/fragment_more">
 
         <action
             android:id="@+id/to_dslActivity"
@@ -190,8 +191,10 @@
     </fragment>
     <!-- endregion -->
 
+    <!-- region Activity -->
     <activity
         android:id="@+id/dslActivity"
         android:name="com.example.androidx.MainDslActivity" />
+    <!-- endregion -->
 
 </navigation>

@@ -5,25 +5,25 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import com.example.androidx.ARGUMENT_KEY_1
 import com.example.androidx.R
 import com.example.androidx.TAG
+import com.example.androidx.databinding.FragmentShareBinding
 
 class ShareFragment : Fragment() {
 
     private val viewModel: ShareViewModel by navGraphViewModels(R.id.main_navigation)
+    private lateinit var binding: FragmentShareBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val root = inflater.inflate(R.layout.fragment_share, container, false)
+    ): View {
+        binding = FragmentShareBinding.inflate(layoutInflater)
 
         // Receive result from fragment
         val backStackStateHandler = findNavController().currentBackStackEntry?.savedStateHandle
@@ -37,15 +37,15 @@ class ShareFragment : Fragment() {
         viewModel.run {
             resetCount()
             text.observe(viewLifecycleOwner) {
-                root.findViewById<TextView>(R.id.text_share).text = it
+                binding.textDescription.text = it
             }
         }
 
-        root.findViewById<Button>(R.id.button_next).setOnClickListener {
+        binding.buttonNext.setOnClickListener {
             viewModel.incrementCount()
             findNavController().navigate(ShareFragmentDirections.toShare1())
         }
 
-        return root
+        return binding.root
     }
 }

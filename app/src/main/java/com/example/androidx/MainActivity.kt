@@ -2,14 +2,13 @@ package com.example.androidx
 
 import android.os.Bundle
 import android.util.Log
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 // - Navigation https://developer.android.com/guide/navigation/navigation-principles
 // - Graph and actions with pop  https://developer.android.com/guide/navigation/navigation-design-graph
@@ -52,6 +51,7 @@ class MainActivity : AppCompatActivity() {
             )
         )
 
+        // Observe destination changes and arguments and react if necessary
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
             val id = destination.id
             val label = destination.label

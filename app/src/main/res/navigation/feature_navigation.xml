@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/feature_navigation"
     app:startDestination="@id/featureFragment">
 
     <fragment
         android:id="@+id/featureFragment"
         android:name="com.example.androidx.ui.feature.FeatureFragment"
-        android:label="FeatureFragment">
+        android:label="FeatureFragment"
+        tools:layout="@layout/fragment_home">
 
         <action
             android:id="@+id/action_featureFragment_to_feature1Fragment"
@@ -17,7 +19,9 @@
     <fragment
         android:id="@+id/feature1Fragment"
         android:name="com.example.androidx.ui.feature.Feature1Fragment"
-        android:label="Feature1Fragment">
+        android:label="Feature1Fragment"
+        tools:layout="@layout/fragment_home">
+
         <deepLink
             android:id="@+id/deepLink2"
             app:uri="navigation://feature" />

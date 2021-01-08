@@ -5,47 +5,56 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.fragment.findNavController
 import com.example.androidx.R
+import com.example.androidx.databinding.FragmentHomeBinding
 
 class Home3Fragment : Fragment() {
+
+    private lateinit var binding: FragmentHomeBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val root = inflater.inflate(R.layout.fragment_home, container, false)
+    ): View {
+        binding = FragmentHomeBinding.inflate(layoutInflater)
 
-        val textView: TextView = root.findViewById(R.id.text_home)
-        textView.text = "Page 3"
-
-        root.findViewById<Button>(R.id.button_next).apply {
+        binding.textDescription.text = "Page 3"
+        binding.buttonNext.apply {
             setOnClickListener {
                 findNavController().navigate(R.id.action_home3_to_feature_navigation)
             }
         }
 
-        root.findViewById<Button>(R.id.button_deep_link).apply {
+        binding.buttonDeepLink.apply {
             visibility = View.VISIBLE
             setOnClickListener {
-                findNavController().navigate(Uri.parse("navigation://feature"))
+//                findNavController().navigate(Uri.parse("navigation://feature"))
+                triggerDeepLink()
             }
         }
 
-        return root
+        return binding.root
     }
 
-//    private fun triggerDeepLink() {
-//        val pendingIntent = NavDeepLinkBuilder(requireContext())
-//            .setGraph(R.navigation.mobile_navigation)
-//            .setDestination(R.id.featureFragment)
-//            .setArguments(Bundle())
-//            .createPendingIntent()
+    private fun triggerDeepLink() {
+        val deepLinkRequest = NavDeepLinkRequest.Builder
+            .fromUri(Uri.parse("navigation://feature"))
+            .setAction("android.intent.action.MY_ACTION")
+            .setMimeType("type/subtype")
+            .build()
+        findNavController().navigate(deepLinkRequest)
+
+        // Expose the graph DeepLinks inside AndroidManifest
+//        <activity name=".MainActivity" ...>
+//            ...
 //
-//        pendingIntent.send()
-//    }
+//            <nav-graph android:value="@navigation/nav_graph" />
+//
+//            ...
+//        </activity>
+    }
 }
